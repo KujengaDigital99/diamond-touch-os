@@ -11,11 +11,11 @@ class GuardianBase {
   constructor(name) { this.name = name.toUpperCase(); }
 
   get cfg() {
-    return config.guardians[this.name] || { model: config.anthropic.model, maxTokens: 512 };
+    return config.guardians[this.name] || { model: config.guardians.NOMMO?.model, maxTokens: 512 };
   }
 
   detectMode(routingDecision) { return 'default'; }
-  resolveModel(mode) { return this.cfg.model || config.anthropic.model; }
+  resolveModel(mode) { return this.cfg.model; }
 
   loadPrompt(mode = 'default') {
     const dir      = path.join(__dirname, this.name.toLowerCase(), 'prompts');

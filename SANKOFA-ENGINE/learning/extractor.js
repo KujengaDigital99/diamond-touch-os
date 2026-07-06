@@ -3,7 +3,8 @@ const { invoke } = require('../guardians/invoke');
 const store      = require('./store');
 const config     = require('../config');
 
-const EXTRACTION_MODEL  = 'claude-haiku-4-5-20251001';
+// Uses the cheapest standard model for whichever provider is configured
+const EXTRACTION_MODEL  = config.guardians.NOMMO?.model || 'gpt-4o-mini';
 const EXTRACTION_TOKENS = 128;
 
 const SYSTEM_PROMPT = `You extract learning patterns from guardian analysis outputs.
@@ -25,7 +26,7 @@ LEARN: no
 REASON: Nothing to extract from a clean pass.`;
 
 async function extract(guardianName, guardianOutput) {
-  if (!config.anthropic.apiKey) return;
+  if (!config.apiKey) return;
   let raw = '';
   try {
     raw = await invoke(
