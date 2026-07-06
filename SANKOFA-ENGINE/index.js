@@ -27,18 +27,31 @@ function releaseLock() {
 
 acquireLock();
 
-if (!config.anthropic.apiKey) {
+if (!config.apiKey) {
   releaseLock();
-  console.error('[SANKOFA] FATAL: ANTHROPIC_API_KEY not set. Copy .env.example to .env and add your key.');
+  console.error('');
+  console.error('[SANKOFA] FATAL: No API key found.');
+  console.error('');
+  console.error('  Add your key to SANKOFA-ENGINE/.env:');
+  console.error('');
+  console.error('  For ChatGPT / OpenAI:');
+  console.error('    OPENAI_API_KEY=sk-...');
+  console.error('');
+  console.error('  For Claude / Anthropic:');
+  console.error('    ANTHROPIC_API_KEY=sk-ant-...');
+  console.error('');
+  console.error('  Copy .env.example to .env and fill in your key, then run again.');
+  console.error('');
   process.exit(1);
 }
 
 // ── Startup banner ─────────────────────────────────────────────────────────────
 const LINE = '='.repeat(60);
 console.log(LINE);
-console.log('  Diamond Touch AI OS  —  SANKOFA Engine v1.0.0');
+console.log('  Diamond Touch AI OS  —  SANKOFA Engine v1.1.0');
 console.log('  NOMMO · OYA · MAWU · ESHU · ANANSI · YEMOJA · ELEGBA');
 console.log(LINE);
+console.log(`  Provider     : ${config.provider}`);
 console.log(`  Systems root : ${config.systemsRoot}`);
 console.log(`  PID          : ${process.pid}`);
 console.log('');
