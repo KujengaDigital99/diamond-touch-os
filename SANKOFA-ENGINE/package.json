@@ -1,0 +1,17 @@
+{
+  "name": "sankofa-engine",
+  "version": "1.0.0",
+  "description": "Diamond Touch AI OS — SANKOFA Engine",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.51.0",
+    "chokidar": "^3.6.0",
+    "dotenv": "^16.4.5",
+    "fs-extra": "^11.2.0",
+    "nodemailer": "^9.0.3"
+  }
+}
